@@ -60,6 +60,6 @@ app.get("*", (req, res) => {
     })
 }); 
 
-httpServer.listen(3000, () => {
-    console.log("SERVER RUNNING AT PORT 3000");
+httpServer.listen(PORT, () => {
+    console.log(`SERVER RUNNING AT PORT ${PORT}`);
   });
