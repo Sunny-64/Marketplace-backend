@@ -32,27 +32,6 @@ app.use("/users", userRoutes);
 const nftRoutes = require("./routes/nft-routes"); 
 app.use("/nfts", nftRoutes); 
 
-// sockets
-
-// socket.on("connection", (s) => {
-//     console.log("connected...")
-//     s.on("mint", async (data) => {
-        
-//         try{
-//             const newNFT = new NFT(); 
-//             console.log(data);
-//             socket.emit("nft saved",data);
-//         }
-//         catch(err){
-//             socket.emit("error encountered...", err.message); 
-//         }
-
-//     })
-//     s.on("disconnect", () => {
-//       console.log("Disconnected: ");
-//     });
-// });
-
 app.get("*", (req, res) => {
     res.status(404).json({
         success : false, 
