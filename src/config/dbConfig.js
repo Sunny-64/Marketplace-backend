@@ -9,8 +9,8 @@ const connectDB = async () => {
         });
         console.log("DATABASE CONNECTED SUCCESSFULLY...");
     } catch (err) {
-        console.log("ERROR WHILE CONNECTING TO DATABASE:");
-        console.error(err.message);
+        console.log(`ERROR WHILE CONNECTING TO DATABASE: ${err.message}`);
+        // console.error(err.message);
     }
 };
 
