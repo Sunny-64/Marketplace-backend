@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"); 
 
-const connectDB = async () => {
+const initiateServer = async (app) => {
     try {
         // console.log("Connecting to DATABASE...");
         await mongoose.connect(process.env.DB_URI, {
@@ -8,10 +8,15 @@ const connectDB = async () => {
             useUnifiedTopology: true,
         });
         console.log("DATABASE CONNECTED SUCCESSFULLY...");
+        app.listen(process.env.PORT || 3000, () => {
+            console.log(`SERVER RUNNING AT PORT : ${process.env.PORT || 3000}`);
+        }); 
     } catch (err) {
         console.log(`ERROR WHILE CONNECTING TO DATABASE: ${err.message}`);
         // console.error(err.message);
     }
 };
 
-module.exports = connectDB;
+module.exports = {
+    initiateServer
+};

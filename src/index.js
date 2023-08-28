@@ -1,23 +1,15 @@
 require("dotenv").config();
+const {initiateServer} = require("./config/server"); 
 const express = require("express"); 
 const app = express(); 
+// connects to database and listens to the specified port
+initiateServer(app); 
 const cors = require("cors"); 
-const connectDB = require("./config/dbConfig"); 
-
-const {Server} = require("socket.io");
-const http = require("http");
-const httpServer = http.createServer(app);
-const socket = new Server(httpServer, {
-  cors: {
-    origin: "http://localhost:3001"
-  },
-});
 
 const NFT = require("./models/nft-model"); 
 
 // configs
 const PORT = process.env.port || 3000; 
-connectDB(); // connects to mongodb
 
 // middlewares 
 app.use(cors()); 
@@ -39,6 +31,3 @@ app.get("*", (req, res) => {
     })
 }); 
 
-httpServer.listen(PORT, () => {
-    console.log(`SERVER RUNNING AT PORT ${PORT}`);
-  });
