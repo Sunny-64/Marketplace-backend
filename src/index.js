@@ -6,8 +6,6 @@ const app = express();
 initiateServer(app); 
 const cors = require("cors"); 
 
-const NFT = require("./models/nft-model"); 
-
 // middlewares 
 
 let corsOptions = {
@@ -30,6 +28,6 @@ app.get("*", (req, res) => {
     res.status(404).json({
         success : false, 
         message : "Page not found"
-    })
+    });
 }); 
 

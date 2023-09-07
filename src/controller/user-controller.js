@@ -11,7 +11,7 @@ const register = async (req, res) => {
     }
     try{
         await createUser({username, email, password, mobile});  
-        return res.json({
+        return res.status(200).json({
             status : 200, 
             success : true, 
             message : "User Registered Successfully"
