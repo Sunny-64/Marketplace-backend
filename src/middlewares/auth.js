@@ -2,8 +2,9 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
     const token = req.headers["authorization"];
+    // console.log(token); 
     if (!token) {
-        console.log(token);
+        // console.log(token);
         console.log("Inside token undefined error");
         return res.status(401).json({
             success: false,

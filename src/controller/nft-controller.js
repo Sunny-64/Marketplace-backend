@@ -65,26 +65,14 @@ const addNFT = async (req, res) => {
 
   const userId = req.user._id;
 
-  console.log(`
-        Token name : ${tokenName} \n 
-        Token Id : ${tokenId} \n 
-        Token URI : ${tokenURI} \n 
-        Token Desc : ${tokenDescription} \n 
-        Token Cate : ${category} \n 
-    `);
+  // console.log(`
+  //       Token name : ${tokenName} \n 
+  //       Token Id : ${tokenId} \n 
+  //       Token URI : ${tokenURI} \n 
+  //       Token Desc : ${tokenDescription} \n 
+  //       Token Cate : ${category} \n 
+  //   `);
 
-  // if (
-  //   !(
-  //     tokenName &&
-  //     tokenId &&
-  //     tokenURI &&
-  //     tokenDescription &&
-  //     category
-  //   )
-  // ) {
-    
-  //   return res.status(400).json({ success: false, message: "Invalid data" });
-  // }
   try {
     const data = {
       userId,
@@ -197,10 +185,10 @@ const addNewNFTToDB = async(data) => {
 }
  
 const saveTxHistory = async (req, res) => {
-  const {tokenId, transactionAmount, transactionType} = req.body; 
+  const {tokenId, transactionAmount, transactionType, transactionHash} = req.body; 
   const userId = req.user._id;
   try{
-    await txHistory({tokenId, transactionAmount, transactionType, userId}); 
+    await txHistory({tokenId, transactionAmount, transactionType, userId, transactionHash}); 
     return res.status(200).json({success : true, message : "tx saved"}); 
   }
   catch(err){

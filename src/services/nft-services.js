@@ -335,7 +335,7 @@ const nftLikeDislike = async (userId, token) => {
 }
 
 const txHistory = async (data) => {
-    const {tokenId, transactionAmount, transactionType, userId} = data; 
+    const {tokenId, transactionAmount, transactionType, userId, transactionHash} = data; 
     try{
 
       const newTx = new Tx(); 
@@ -343,6 +343,7 @@ const txHistory = async (data) => {
       newTx.transactionAmount = transactionAmount; 
       newTx.transactionType = transactionType; 
       newTx.userId = userId; 
+      newTx.transactionHash = transactionHash;
       await newTx.save(); 
     } 
     catch(err){

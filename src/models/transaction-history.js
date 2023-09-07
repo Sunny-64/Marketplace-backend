@@ -5,6 +5,7 @@ const transactionHistorySchema = new mongoose.Schema({
     userId : {type : String}, 
     transactionAmount : {type : Number}, // in wei
     transactionType : {type : String, enum : ['sell', 'purchase', 'bid']},
+    transactionHash : {type : String}, 
     createdAt : {type : Date, default : Date.now}
 }); 
 

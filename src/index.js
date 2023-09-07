@@ -8,11 +8,13 @@ const cors = require("cors");
 
 const NFT = require("./models/nft-model"); 
 
-// configs
-const PORT = process.env.port || 3000; 
-
 // middlewares 
-app.use(cors()); 
+
+let corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions)); 
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
