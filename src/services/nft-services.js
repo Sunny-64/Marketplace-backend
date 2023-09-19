@@ -16,7 +16,7 @@ const findAllNfts = async () => {
   try {
     // console.log(contractInstance);
     let tokens = await contractInstance.methods.viewAllTokens().call();
-    // console.log(tokens);
+    console.log(tokens);
     // let result = tokens.map((token) => token.toString());
     let result = [];
     tokens.forEach((token) => {
@@ -300,9 +300,10 @@ const getAllCategories = async () => {
       // console.log(nfts);
       const onlyListed = nfts.filter(item => (Boolean(item.isListedForAuction) || Boolean(item.isListedForSale))); 
       const result = onlyListed.map(item => item.category); 
-
-      // console.log(result);
-      return result; 
+      const nonRepetitiveResult = new Set(); 
+      result.forEach(item => nonRepetitiveResult.add(item)); 
+      // console.log(nonRepetitiveResult);
+      return [...nonRepetitiveResult]; 
     }
     catch(err){
       throw new Error(err)

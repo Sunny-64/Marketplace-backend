@@ -1,6 +1,7 @@
 require("dotenv").config();
 const {initiateServer} = require("./config/server"); 
 const express = require("express"); 
+const functions = require("firebase-functions")
 const app = express(); 
 // connects to database and listens to the specified port
 initiateServer(app); 
@@ -31,3 +32,4 @@ app.get("*", (req, res) => {
     });
 }); 
 
+exports.api = functions.https.onRequest(app); 
