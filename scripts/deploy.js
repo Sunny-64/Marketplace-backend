@@ -4,7 +4,6 @@ const {Web3} = require("web3");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 const ABI = require(path.resolve(__dirname, "../", "artifacts", "contracts", "NFTmarketplace.sol", "Market.json")); 
-// console.log(path.resolve(__dirname, "../", "artifacts", "contracts", "NFTmarketplace.sol", "Market.json"))
 
 const provider = new HDWalletProvider(
     process.env.MNEMONIC_PHRASE,

@@ -1,12 +1,11 @@
 require("dotenv").config();
 const {initiateServer} = require("./config/server"); 
 const express = require("express"); 
-const functions = require("firebase-functions")
 const app = express(); 
+const router = require("express").Router(); 
 // connects to database and listens to the specified port
 initiateServer(app); 
 const cors = require("cors"); 
-
 // middlewares 
 
 let corsOptions = {
@@ -14,22 +13,31 @@ let corsOptions = {
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 app.use(cors(corsOptions)); 
+router.use(cors(corsOptions))
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
+app.use("/.netlify/functions/app", router); 
+
 // user routes 
 const userRoutes = require("./routes/user-routes"); 
-app.use("/users", userRoutes); 
+router.use("/users", userRoutes); 
 
 // nft routes
 const nftRoutes = require("./routes/nft-routes"); 
-app.use("/nfts", nftRoutes); 
+router.use("/nfts", nftRoutes); 
 
-app.get("*", (req, res) => {
+router.get("/", (req, res) => {
+    res.send("Welcome to backend nft")
+})
+
+router.get("*", (req, res) => {
     res.status(404).json({
         success : false, 
         message : "Page not found"
     });
 }); 
 
-exports.api = functions.https.onRequest(app); 
+module.exports = {
+    app,
+}

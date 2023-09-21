@@ -203,8 +203,5 @@ describe("Test Market place", () => {
         assert.equal(viewToken[0].owner, accounts[2]); 
 
     }); 
-
-    
-    
 });
 

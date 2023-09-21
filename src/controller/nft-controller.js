@@ -15,6 +15,8 @@ const {
 } = require("./../services/nft-services");
 
 const NFT = require("./../models/nft-model"); 
+const contractInstance = require("../helpers/contract");
+const web3 = require("./../helpers/web3")
 
 const getAllListedNfts = async (req, res) => {
   try {
@@ -27,6 +29,7 @@ const getAllListedNfts = async (req, res) => {
       data: nfts,
     });
   } catch (err) {
+    console.log(err)
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -45,6 +48,7 @@ const getAllNfts = async (req, res) => {
       data: nfts,
     });
   } catch (err) {
+    console.log(err)
     return res.status(500).json({
       success: false,
       message: "Internal server error",

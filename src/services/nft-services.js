@@ -4,6 +4,7 @@ const NFT = require("./../models/nft-model");
 const User = require("./../models/user-model");
 const Tx = require("./../models/transaction-history"); 
 var _ = require('lodash');
+const web3 = require("../helpers/web3");
 
 
 async function getAuctionByTokenId(tokenId){
@@ -46,6 +47,7 @@ const findAllNfts = async () => {
 
 const findListedNfts = async () => {
   try {
+    
     let tokens = await contractInstance.methods.viewAllTokens().call();
     // console.log(tokens);
     let saleTokens = await tokens.filter(token => Boolean(token.isListedForSale)); 
