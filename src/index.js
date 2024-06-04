@@ -8,10 +8,19 @@ initiateServer(app);
 const cors = require("cors"); 
 // middlewares 
 
-let corsOptions = {
-    origin: "*",
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// let corsOptions = {
+//     origin: ["https://frontend-nft.qservicesit.com", "http://localhost:3000"],
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+
+let corsOptions ={
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204,
+    Credential : false
 }
+
 app.use(cors(corsOptions)); 
 router.use(cors(corsOptions))
 app.use(express.urlencoded({extended: true})); 
