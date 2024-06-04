@@ -2,7 +2,6 @@ require("dotenv").config();
 const {initiateServer} = require("./config/server"); 
 const express = require("express"); 
 const app = express(); 
-const router = require("express").Router(); 
 // connects to database and listens to the specified port
 initiateServer(app); 
 const cors = require("cors"); 
@@ -22,31 +21,27 @@ let corsOptions ={
 }
 
 app.use(cors(corsOptions)); 
-router.use(cors(corsOptions))
+app.use(cors(corsOptions))
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
-app.use("/.netlify/functions/app", router); 
 
 // user routes 
 const userRoutes = require("./routes/user-routes"); 
-router.use("/users", userRoutes); 
+app.use("/users", userRoutes); 
 
 // nft routes
 const nftRoutes = require("./routes/nft-routes"); 
-router.use("/nfts", nftRoutes); 
+app.use("/nfts", nftRoutes); 
 
-router.get("/", (req, res) => {
+app.get("/", (req, res) => {
     res.send("Welcome to backend nft")
 })
 
-router.get("*", (req, res) => {
+app.get("*", (req, res) => {
     res.status(404).json({
         success : false, 
         message : "Page not found"
     });
 }); 
 
-module.exports = {
-    app,
-}
